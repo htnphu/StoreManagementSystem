@@ -6,25 +6,30 @@ import bodyParser from 'body-parser';
 import ownerRoute from './api/routes/ownerRoute.js';
 import storeRoute from './api/routes/storeRoute.js';
 
-// // Config
-// import dbConfig from './db.config.js';
+// Database config
+import dbConfig from './db.config.js';
+
+const sequelize = new Sequelize(
+  dbConfig.database,
+  dbConfig.username,
+  dbConfig.password,
+  {
+    host: dbConfig.host,
+    dialect: 'postgres', 
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
+  }
+);
 
 const app = express();
 
-const dbConfig = new Sequelize('StoreManagementSystem', 'postgres', 'postgres', {
-  host: 'localhost',
-  dialect: 'postgres',
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000,
-  },
-});
-
 const connect = async () => {
   try {
-    await dbConfig.authenticate();
+    await sequelize.authenticate();
     console.log('Connected to database.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
