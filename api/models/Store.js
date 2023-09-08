@@ -1,18 +1,26 @@
 // models/Store.js
 import { Sequelize, DataTypes } from 'sequelize';
 
-const dbConfig = new Sequelize('StoreManagementSystem', 'postgres', 'postgres', {
-  host: 'localhost',
-  dialect: 'postgres',
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000,
-  },
-});
+// Database config
+import dbConfig from '../../db.config.js';
 
-const Store = dbConfig.define('Store', {
+const sequelize = new Sequelize(
+  dbConfig.database,
+  dbConfig.username,
+  dbConfig.password,
+  {
+    host: dbConfig.host,
+    dialect: 'postgres', 
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
+  }
+);
+
+const Store = sequelize.define('Store', {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
