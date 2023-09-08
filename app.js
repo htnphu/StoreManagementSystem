@@ -1,11 +1,19 @@
 import express from 'express';
 import { Sequelize } from 'sequelize';
+import bodyParser from 'body-parser';
+
+// Route
+import ownerRoute from './api/routes/ownerRoute.js';
+import storeRoute from './api/routes/storeRoute.js';
+
+// // Config
+// import dbConfig from './db.config.js';
+
 const app = express();
 
 const dbConfig = new Sequelize('StoreManagementSystem', 'postgres', 'postgres', {
   host: 'localhost',
   dialect: 'postgres',
-  operatorsAliases: false,
   pool: {
     max: 5,
     min: 0,
@@ -23,7 +31,16 @@ const connect = async () => {
   }
 };
 
+app.use(bodyParser.json());
+
 // Middleware and routes setup
+
+// Owner routes
+app.use('/api/owners', ownerRoute);
+
+// Store routes
+app.use('/api/stores', storeRoute);
+
 
 // Handle status
 
