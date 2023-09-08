@@ -8,7 +8,7 @@ export const registerOwner = async (req, res, next) => {
   try {
     /* 
       if findOwner by email is existed 
-      then replace line 14 with const existingOwner = awaifindOwner(newOwner.email) 
+      then replace line 14 with const existingOwner = await findOwner(newOwner.email) 
       and return code: 409
     */
     const existingOwner = await Owner.findOne({ where: { email: newOwner.email } });

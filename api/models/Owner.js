@@ -36,12 +36,6 @@ const Owner = dbConfig.define('Owner', {
   },
 });
 
-// dbConfig.sync()
-//   .then(() => {
-//     console.log('Table "Owners" created successfully.');
-//   })
-//   .catch((error) => {
-//     console.error('Error in creating table "Owners":', error);
-//   });
+Owner.sync();
 
 export default Owner;
