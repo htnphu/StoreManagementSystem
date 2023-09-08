@@ -7,7 +7,7 @@ export const createNewStore = async (req, res, next) => {
   try {
     /* 
       if findStore by email is existed 
-      then replace line 14 with const existingStore = await findStore(newStore.email) 
+      then replace line 13 with const existingStore = await findStore(newStore.email) 
       and return code: 409
     */
     const existingStore = await Store.findOne({ where: { email: newStore.email } });
@@ -29,5 +29,22 @@ export const createNewStore = async (req, res, next) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Failed to create a new store' });
+  }
+};
+
+export const findStoresByOwnerId = async (req, res) => {
+  try {
+    const ownerId = req.params.ownerId;
+
+    const stores = await Store.findAll({ where: { ownerId } });
+
+    if (!stores || stores.length === 0) {
+      return res.status(404).json({ message: 'Can not find store by this owner id.' });
+    }
+
+    return res.status(200).json(stores);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Could not find store or store have not been created.' });
   }
 };

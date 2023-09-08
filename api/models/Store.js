@@ -12,17 +12,6 @@ const dbConfig = new Sequelize('StoreManagementSystem', 'postgres', 'postgres', 
   },
 });
 
-// const sequelize = new Sequelize(
-//   dbConfig.database,
-//   dbConfig.username,
-//   dbConfig.password,
-//   {
-//     host: dbConfig.host,
-//     dialect: 'postgres', // Use the appropriate dialect for your database (e.g., 'mysql', 'sqlite', etc.)
-//     // Other Sequelize options (if needed)
-//   }
-// );
-
 const Store = dbConfig.define('Store', {
   name: {
     type: DataTypes.STRING,
