@@ -19,7 +19,7 @@ To run this project locally, follow these steps:
 
 2. **Install the project dependencies (if missing):**
    ```bash
-    npm install
+   npm install
 
 3. **Update database config at db.config.js**: Open the `db.config.js` file and make the necessary changes to the database configuration, including the `database`, `username`, and `password` fields. For example:
 
@@ -41,9 +41,13 @@ To run this project locally, follow these steps:
     };
 
 
-4. **Start the development server:**
+4. **Start server:**
    ```bash
-   npm start
+   yarn start
+
+5. **Start in the development environemtn:**
+   ```bash
+   yarn dev
 
 ## Usage
 1. **Register as a Store Owner**: Store owners can register by sending a POST request to `/api/owners/register`. The request body should include details like full name, phone number, email, etc.
