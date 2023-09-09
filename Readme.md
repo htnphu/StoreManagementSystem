@@ -15,9 +15,9 @@ To run this project locally, follow these steps:
 1. **Clone the repository to your local machine:**
 
    ```bash
-   git clone https://github.com/your-username/store-management-system.git
+   git clone https://github.com/htnphu/StoreManagementSystem.git
 
-2. **Install the project dependencies:**
+2. **Install the project dependencies (if missing):**
    ```bash
     npm install
 
